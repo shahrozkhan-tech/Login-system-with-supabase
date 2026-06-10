@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf5 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .dashboard-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 420px;
+        padding: 36px 32px;
+        box-shadow:
+          0 20px 40px -15px rgba(0, 0, 0, 0.05),
+          0 15px 30px -10px rgba(0, 0, 0, 0.03);
+      }
+
+      .dashboard-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 32px;
+        text-align: center;
+      }
+
+      .avatar-wrapper {
+        width: 96px;
+        height: 96px;
+        margin-bottom: 16px;
+        border-radius: 50%;
+        position: relative;
+        background: #f8fafc;
+        padding: 3px;
+        border: 1px solid #cbd5e1;
+      }
+
+      .avatar-wrapper img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .dashboard-header h1 {
+        font-size: 22px;
+        font-weight: 500;
+        color: #64748b;
+        letter-spacing: -0.3px;
+      }
+
+      #userName-hed {
+        color: #1e293b;
+        font-weight: 600;
+      }
+
+      .info-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 32px;
+      }
+
+      .info-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        position: relative;
+      }
+
+      .info-item i {
+        color: #64748b;
+        font-size: 15px;
+        width: 20px;
+        text-align: center;
+      }
+
+      .info-content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      .info-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #94a3b8;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+
+      .info-value {
+        color: #334155;
+        font-size: 14px;
+        font-weight: 500;
+        word-break: break-all;
+      }
+
+      .edit-input {
+        display: none;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        padding: 6px 10px;
+        font-size: 14px;
+        outline: none;
+        color: #1e293b;
+        margin-top: 6px;
+        transition: border-color 0.2s ease;
+      }
+
+      .edit-input:focus {
+        border-color: #4e54c8;
+        box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.1);
+      }
+
+      .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 12px 24px;
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.15s ease;
+      }
+
+      .edit-btn {
+        background-color: #4e54c8;
+        color: #ffffff;
+      }
+
+      .edit-btn:hover {
+        background-color: #3f44a4;
+      }
+
+      .logout-btn {
+        background-color: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        color: #475569;
+      }
+
+      .logout-btn:hover {
+        background-color: #e2e8f0;
+        color: #1e293b;
+      }
+
+      .delete-btn-acc {
+        background-color: transparent;
+        color: #dc2626;
+        font-size: 12px;
+        padding: 8px;
+        margin-top: 4px;
+        opacity: 0.75;
+      }
+
+      .delete-btn-acc:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard-card">
+      <div class="dashboard-header">
+        <div class="avatar-wrapper">
+          <img
+            id="userAvatar"
+            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            alt="Profile Picture"
+          />
+        </div>
+        <h1>Welcome <span id="userName-hed">Loading...</span></h1>
+      </div>
+
+      <div class="info-container">
+        <div class="info-item">
+          <i class="aria-icon fas fa-user"></i>
+          <div class="info-content">
+            <span class="info-label">Name</span>
+            <span id="userName" class="info-value">Loading...</span>
+            <input type="text" id="editNameInp" class="edit-input" />
+          </div>
+        </div>
+
+        <div class="info-item">
+          <i class="aria-icon fas fa-envelope"></i>
+          <div class="info-content">
+            <span class="info-label">Email Address</span>
+            <span id="userEmail" class="info-value">Loading...</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <i class="aria-icon fas fa-phone"></i>
+          <div class="info-content">
+            <span class="info-label">Phone Number</span>
+            <span id="userPhone" class="info-value">Loading...</span>
+            <input type="text" id="editPhoneInp" class="edit-input" />
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="edit-profile-btn" class="btn edit-btn">
+          <i class="fas fa-edit"></i>
+          <span id="edit-btn-text">Edit Profile</span>
+        </button>
+
+        <button id="logout" class="btn logout-btn">
+          <i class="fas fa-sign-out-alt"></i> Logout Session
+        </button>
+
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

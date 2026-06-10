@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Login & Sign Up</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="form-container sign-up-container">
+        <form action="#">
+          <h1>Create Account</h1>
+          <div class="social-container">
+            <a href="#" class="social" onclick="loginWithSocial('google')"
+              ><i class="fab fa-google"></i
+            ></a>
+            <a href="#" class="social" onclick="loginWithSocial('github')"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="#" class="social" onclick="loginWithSocial('facebook')">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </div>
+          <span>or use your email for registration</span>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" id="username-inp" placeholder="Name" required />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-phone"></i>
+            <input
+              type="text"
+              title="Please enter a valid ph Number!"
+              id="ph-inp"
+              placeholder="Phone Number"
+              minlength="11"
+              maxlength="11"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input
+              type="email"
+              class="signup-email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              class="signup-pass"
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          <div class="links-wrapper-signup">
+            <a href="#" class="clean-toggle modern-link"
+              >Already Have Account!</a
+            >
+          </div>
+          <button class="btn" id="signup">Sign Up</button>
+        </form>
+      </div>
+
+      <div class="form-container sign-in-container">
+        <form action="#">
+          <h1>Sign In</h1>
+          <div class="social-container">
+            <a href="#" class="social" onclick="loginWithSocial('google')"
+              ><i class="fab fa-google"></i
+            ></a>
+            <a href="#" class="social" onclick="loginWithSocial('github')"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="#" class="social" onclick="loginWithSocial('facebook')">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </div>
+          <span>or use your account</span>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" placeholder="Email" required />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="pass" placeholder="Password" required />
+          </div>
+
+          <div class="links-wrapper-signin">
+            <a href="./forgot.html" id="forgot-btn" class="modern-link"
+              >Forgot password?</a
+            >
+            <a href="#" class="toggle-link modern-link"
+              >Don't have an account?</a
+            >
+          </div>
+          <button class="btn" id="signin">Sign In</button>
+        </form>
+      </div>
+
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h2>Welcome Back!</h2>
+            <p>
+              To keep connected with us please login with your personal info
+            </p>
+            <button class="btn transparent" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h2>Hello, Friend!</h2>
+            <p>Enter your personal details and start your journey with us</p>
+            <button class="btn transparent" id="signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
