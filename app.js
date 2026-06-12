@@ -6,6 +6,29 @@ const container = document.getElementById("container");
 const signInLink = document.querySelector(".clean-toggle");
 const signUpLink = document.querySelector(".toggle-link");
 
+
+
+
+async function loginWithGitHub(e) {
+    if (e) e.preventDefault();
+    
+    Swal.showLoading(); 
+
+    const { data, error } = await client.auth.signInWithOAuth({
+        provider: 'github',
+        options: {
+            redirectTo: 'https://pro-todo-app.vercel.app/todo.html'
+        }
+    });
+
+    if (error) {
+        Swal.fire({ icon: 'error', title: 'GitHub Login Failed', text: error.message });
+        console.error("GitHub Auth Error:", error);
+    }
+}
+
+
+
 if (signInButton) {
   signInButton.addEventListener("click", () =>
     container.classList.remove("right-panel-active"),
