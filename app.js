@@ -188,7 +188,6 @@ window.loginWithSocial = async function (providerName) {
   const { error } = await supabaseClient.auth.signInWithOAuth({
     provider: providerName,
     options: {
-      // redirectTo: window.location.origin + "/dashboard.html",
       redirectTo: 'https://shahrozkhan-tech.github.io/Login-system-with-supabase/dashboard.html',
     },
   });
@@ -222,7 +221,8 @@ if (window.location.pathname.includes("forgot.html")) {
     const { error } = await supabaseClient.auth.resetPasswordForEmail(
       emailValue,
       {
-        redirectTo: window.location.origin + "/update-password.html",
+      redirectTo: 'https://shahrozkhan-tech.github.io/Login-system-with-supabase/update-password.html',
+          
       },
     );
 
